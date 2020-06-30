@@ -27,15 +27,13 @@ jobs:
       - name: Install jazzy
         run: |
           gem install jazzy
+      - name: Check jazzy version
+        run: |
+          jazzy -version
+          type -a jazzy
       - name: Generate docs using jazzy
         run: |
-          jazzy \
-            --clean \
-            --author Mohammadreza Koohkan \
-            --author_url https://mohamadreza.codes/ \
-            --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit \
-            --output public \
-            --module VersionKit
+          jazzy --clean --author Mohammadreza Koohkan --author_url https://mohamadreza.codes/ --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit --output public --module VersionKit
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
