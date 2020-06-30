@@ -31,6 +31,9 @@ jobs:
         run: |
           jazzy -version
           type -a jazzy
+      - name: Where am i
+        run: |
+          ls
       - name: Generate docs using jazzy
         run: |
           jazzy --clean --author Mohammadreza Koohkan --author_url https://mohamadreza.codes/ --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit --output public --module VersionKit
