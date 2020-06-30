@@ -10,8 +10,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Check environment variables
         run: |
-         echo "PROJECT: $PROJECT"
-         echo "SCHEME: $SCHEME"
+         echo "PROJECT: VersionKit.xcodeproj"
+         echo "SCHEME: VersionKit"
       - name: Check gem version
         run: |
           gem -v
@@ -31,7 +31,7 @@ jobs:
       - name: Check xcodebuild comptability
         run: |
           xcodebuild clean
-          xcodebuild build -project "${PROJECT}" -scheme "${SCHEME}"  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild build -project VersionKit.xcodeproj -scheme VersionKit CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
       - name: Install jazzy
         run: |
           gem install jazzy
