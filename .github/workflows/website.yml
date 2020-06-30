@@ -8,8 +8,8 @@ jobs:
     strategy:
         matrix:
           os: [macOS-latest]
-          project: VersionKit.xcodeproj
-          scheme: VersionKit
+          project: [VersionKit.xcodeproj]
+          scheme: [VersionKit]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
