@@ -4,7 +4,12 @@ on: push
 
 jobs:
   publish:
-    runs-on: macOS-latest
+    runs-on: OS
+    strategy:
+        matrix:
+          os: [macOS-latest]
+          project: VersionKit.xcodeproj
+          scheme: VersionKit
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,7 +32,7 @@ jobs:
       - name: Check xcodebuild comptability
         run: |
           xcodebuild clean
-          xcodebuild build -project VersionKit.xcodeproj -scheme VersionKit  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild build -project "${PROJECT}" -scheme "${SCHEME}"  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
       - name: Install jazzy
         run: |
           gem install jazzy
@@ -40,7 +45,13 @@ jobs:
           ls
       - name: Generate docs using jazzy
         run: |
-          jazzy --build-tool-arguments CODE_SIGN_IDENTITY=,CODE_SIGNING_REQUIRED=NO,CODE_SIGNING_ALLOWED=NO --clean  --author Mohammadreza Koohkan --author_url https://mohamadreza.codes/ --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit --output public --module VersionKit --theme apple
+          jazzy --build-tool-arguments CODE_SIGN_IDENTITY=,CODE_SIGNING_REQUIRED=NO,CODE_SIGNING_ALLOWED=NO \
+             --clean \
+             --author Mohammadreza Koohkan \
+             --author_url https://mohamadreza.codes/ \
+             --output public \
+             --module VersionKit \
+             --theme apple
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
@@ -49,3 +60,6 @@ jobs:
           build_dir: public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OS: ${{ matrix.os }}
+          PROJECT: ${{ matrix.project }}
+          SCHEME: ${{ matrix.scheme }}
