@@ -14,16 +14,17 @@ jobs:
       - name: Check xcodebuild version
         run: |
           xcodebuild -version
+          type -a xcode-select
       - name: Check xcode-select version
         run: |
           xcode-select -version
+          type -a xcode-select
       - name: Install jazzy
         run: |
           gem install jazzy
       - name: Generate docs using jazzy
         run: |
-          jazzy --clean \
-            --author Mohammadreza Koohkan \
+          jazzy --author Mohammadreza Koohkan \
             --author_url https://mohamadreza.codes \
             --output public
       - name: Deploy to GitHub Pages
