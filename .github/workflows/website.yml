@@ -4,10 +4,7 @@ on: push
 
 jobs:
   publish:
-    runs-on: OS
-    strategy:
-        matrix:
-          os: [macOS-latest]
+    runs-on: macOS-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -58,6 +55,5 @@ jobs:
           build_dir: public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OS: ${{ matrix.os }}
           PROJECT: VersionKit.xcodeproj
           SCHEME: VersionKit
