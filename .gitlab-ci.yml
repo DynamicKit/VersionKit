@@ -4,9 +4,6 @@ stages:
 
 before_script:
   - gem -v
-  - xcodebuild -version
-  - xcode-select -version
-  
 
 pages:
   stage: deploy
