@@ -24,6 +24,10 @@ jobs:
         run: |
           xcode-select -version
           type -a xcode-select
+      - name: Check xcodebuild comptability
+        run: |
+          xcodebuild clean
+          xcodebuild build
       - name: Install jazzy
         run: |
           gem install jazzy
@@ -34,10 +38,6 @@ jobs:
       - name: Where am i
         run: |
           ls
-      - name: Check xcodebuild comptability
-        run: |
-          xcodebuild clean
-          xcodebuild build
       - name: Generate docs using jazzy
         run: |
           jazzy --clean --author Mohammadreza Koohkan --author_url https://mohamadreza.codes/ --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit --output public --module VersionKit --theme apple
