@@ -5,7 +5,7 @@ before_script:
   - bundle install
 
 pages:
-  stage: deploy documents
+  stage: deploy
   script:
   - bundle exec jekyll build -d docs
   artifacts:
