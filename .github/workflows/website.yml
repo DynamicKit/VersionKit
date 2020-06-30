@@ -27,7 +27,6 @@ jobs:
       - name: Check xcodebuild comptability
         run: |
           xcodebuild clean
-          xcodebuild build
       - name: Install jazzy
         run: |
           gem install jazzy
@@ -40,7 +39,7 @@ jobs:
           ls
       - name: Generate docs using jazzy
         run: |
-          jazzy --clean --author Mohammadreza Koohkan --author_url https://mohamadreza.codes/ --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit --output public --module VersionKit --theme apple
+          jazzy --build-tool-arguments CODE_SIGN_IDENTITY=,CODE_SIGNING_REQUIRED=NO,CODE_SIGNING_ALLOWED=NO
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
