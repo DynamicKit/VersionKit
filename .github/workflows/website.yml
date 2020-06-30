@@ -11,10 +11,15 @@ jobs:
       - name: Check gem version
         run: |
           gem -v
+          type -a gem
+      - name: Check bundle version
+        run: |
+          bundle -v
+          type -a bundle
       - name: Check xcodebuild version
         run: |
           xcodebuild -version
-          type -a xcode-select
+          type -a xcodebuild
       - name: Check xcode-select version
         run: |
           xcode-select -version
@@ -24,9 +29,7 @@ jobs:
           gem install jazzy
       - name: Generate docs using jazzy
         run: |
-          jazzy --author Mohammadreza Koohkan \
-            --author_url https://mohamadreza.codes \
-            --output public
+          jazzy 
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
