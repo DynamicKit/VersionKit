@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Check dependencies version
         run: |
-          gem -version
+          gem -v
           xcodebuildd -version
           xcode-select -version
       - name: Generate docs using jazzy
