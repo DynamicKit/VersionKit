@@ -8,16 +8,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Check dependencies version
+      - name: Check gem version
         run: |
           gem -v
+      - name: Check xcodebuild version
+        run: |
           xcodebuild -version
+      - name: Check xcode-select version
+        run: |
           xcode-select -version
+      - name: Install jazzy
+        run: |
+          gem install jazzy
       - name: Generate docs using jazzy
-        uses: steven0351/publish-jazzy-docs@v1
-        with:
-          personal_access_token: ${{ secrets.ACCESS_TOKEN }}
-          args: "--clean --author Mohammadreza Koohkan --author_url https://mohamadreza.codes --output public"
+        run: |
+          jazzy --clean \
+            --author Mohammadreza Koohkan \
+            --author_url https://mohamadreza.codes \
+            --output public
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
