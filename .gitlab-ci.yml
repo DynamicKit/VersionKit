@@ -8,12 +8,8 @@ before_script:
 pages:
   stage: deploy
   script:
-  - echo "@Documentation install jazzy"
-  - gem install jazzy
-  - echo "@Documentation build jazzy"
-  - jazzy --clean --author Mohammadreza Koohkan --author_url https://mohamadreza.codes --output public
+  - echo "@Documentation check is there jazzy"
   - cd public && ls && cd ..
-  - echo "@Documentation deploy gitlab pages"
   artifacts:
     paths:
     - public
