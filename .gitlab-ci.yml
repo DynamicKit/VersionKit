@@ -1,10 +1,13 @@
-stages:
-  - release
-release:
-  stage: release
+image: ruby:2.7
+
+before_script:
+  - gem install bundler
+  - bundle install
+
+pages:
+  stage: deploy documents
   script:
-    - ls
+  - bundle exec jekyll build -d docs
   artifacts:
     paths:
-    - build/ipa/
-
+    - docs
