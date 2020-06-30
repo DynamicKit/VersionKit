@@ -1,7 +1,6 @@
 image: ruby:2.7
 
 stages:
-  - build
   - test
   - deploy
 
