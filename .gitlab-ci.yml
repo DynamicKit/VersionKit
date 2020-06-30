@@ -1,5 +1,10 @@
 image: ruby:2.7
 
+stages:
+  - build
+  - test
+  - deploy
+
 before_script:
   - gem install bundler
   - bundle install
@@ -11,3 +16,5 @@ pages:
   artifacts:
     paths:
     - public
+  only:
+    - master
