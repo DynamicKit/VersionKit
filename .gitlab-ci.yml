@@ -1,0 +1,10 @@
+stages:
+  - release
+release:
+  stage: release
+  script:
+    - ls
+  artifacts:
+    paths:
+    - build/ipa/
+
