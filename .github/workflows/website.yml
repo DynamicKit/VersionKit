@@ -29,7 +29,13 @@ jobs:
           gem install jazzy
       - name: Generate docs using jazzy
         run: |
-          jazzy 
+          jazzy \
+            --clean \
+            --author Mohammadreza Koohkan \
+            --author_url https://mohamadreza.codes/ \
+            --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit \
+            --output public \
+            --module VersionKit
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
