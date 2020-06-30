@@ -1,7 +1,6 @@
 image: ruby:2.7
 
 stages:
-  - test
   - deploy
 
 before_script:
@@ -11,7 +10,7 @@ before_script:
 pages:
   stage: deploy
   script:
-  - bundle exec jekyll build -d public
+  - echo "Deploy gitlab pages"
   artifacts:
     paths:
     - public

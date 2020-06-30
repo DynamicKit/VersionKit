@@ -9,6 +9,7 @@ jazzy \
   --output public
 elif [ $1 = "git" ]
 then
+echo "Please defince commit message "
 read commit
 git add .
 git commit -m "$commit"
