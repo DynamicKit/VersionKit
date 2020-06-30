@@ -36,7 +36,6 @@ jobs:
           ls
       - name: Check xcodebuild comptability
         run: |
-          xcodebuild -showBuildSettings
           xcodebuild clean
           xcodebuild build
       - name: Generate docs using jazzy
