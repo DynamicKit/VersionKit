@@ -1,3 +1,17 @@
+# Default macos files
 .DS_Store
-build
+
+# Jekyll produced 
 .jekyll-cache
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# jazzy related stuff
+build
+public
+Gemfile
+Gemfile.lock

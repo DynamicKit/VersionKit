@@ -4,13 +4,21 @@ stages:
   - deploy
 
 before_script:
-  - gem install bundler
-  - bundle install
+  - xcodebuild clean
+  
 
 pages:
   stage: deploy
   script:
-  - echo "Deploy gitlab pages"
+  - echo "@Documentation install jazzy"
+  - gem install jazzy
+  - echo "@Documentation build jazzy"
+  - jazzy \
+    --clean \
+    --author Mohammadreza Koohkan \
+    --author_url https://mohamadreza.codes \
+    --output public
+  - echo "@Documentation deploy gitlab pages"
   artifacts:
     paths:
     - public
