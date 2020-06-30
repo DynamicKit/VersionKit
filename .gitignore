@@ -9,9 +9,11 @@
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.xcuserstate
 
 # jazzy related stuff
 build
+public
 
 # not needed ci configurations
 
