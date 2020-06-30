@@ -8,8 +8,6 @@ jobs:
     strategy:
         matrix:
           os: [macOS-latest]
-          project: [VersionKit.xcodeproj]
-          scheme: [VersionKit]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -61,5 +59,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OS: ${{ matrix.os }}
-          PROJECT: ${{ matrix.project }}
-          SCHEME: ${{ matrix.scheme }}
+          PROJECT: VersionKit.xcodeproj
+          SCHEME: VersionKit
