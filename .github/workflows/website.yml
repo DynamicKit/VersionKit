@@ -36,7 +36,7 @@ jobs:
           ls
       - name: Generate docs using jazzy
         run: |
-          jazzy --clean --author Mohammadreza Koohkan --author_url https://mohamadreza.codes/ --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit --output public --module VersionKit
+          jazzy --clean --author Mohammadreza Koohkan --author_url https://mohamadreza.codes/ --xcodebuild-arguments -project,VersionKit.xcodeproj,-scheme,VersionKit --output public --module VersionKit --theme apple
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
