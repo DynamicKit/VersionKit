@@ -4,7 +4,7 @@ stages:
   - deploy
 
 before_script:
-  - xcodebuild clean
+  - gem -v
   
 
 pages:
