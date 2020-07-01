@@ -1,19 +1,13 @@
 
 
-if [ $1 = "jazzy" ]
+if [ $1 = "settings" ]
 then
-jazzy \
-  --clean \
-  --author Mohammadreza Koohkan \
-  --author_url https://mohamadreza.codes \
-  --output public
+    xcodebuild -showBuildSettings
 elif [ $1 = "git" ]
 then
-echo "Please define commit message "
-read commit
-git add .
-git commit -m "$commit"
-git push -u origin head
+    git add .
+    git commit -m "$2"
+    git push -u origin HEAD
 else
     echo "invalid arguemnt"
 fi
