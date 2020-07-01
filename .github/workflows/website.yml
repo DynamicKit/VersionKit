@@ -5,6 +5,9 @@ on: push
 env:
   PROJECT: VersionKit.xcodeproj
   SCHEME: VersionKit
+  AUTHOR: Mohammadreza Koohkan
+  AUTHOR_URL: https://mohamadreza.codes/
+  THEME: apple
   BUILD_DIR: public
 
 jobs:
@@ -17,6 +20,10 @@ jobs:
         run: |
          echo PROJECT: $PROJECT
          echo SCHEME: $SCHEME
+         echo AUTHOR: $AUTHOR
+         echo AUTHOR_URL: $AUTHOR_URL
+         echo THEME: $THEME
+         echo BUILD_DIR: $BUILD_DIR
       - name: Check gem version
         run: |
           gem -v
@@ -52,11 +59,11 @@ jobs:
         run: |
           jazzy --build-tool-arguments CODE_SIGN_IDENTITY=,CODE_SIGNING_REQUIRED=NO,CODE_SIGNING_ALLOWED=NO \
              --clean \
-             --author Mohammadreza Koohkan \
-             --author_url https://mohamadreza.codes/ \
+             --author $AUTHOR \
+             --author_url $AUTHOR_URL \
              --output $BUILD_DIR \
              --module $SCHEME \
-             --theme apple
+             --theme $THEME
           ls
       - name: Check jazzy documentations folder
         run: |
