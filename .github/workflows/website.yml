@@ -1,6 +1,6 @@
 name: website
 
-on: push
+on: [push,pull_request,release]
 
 env:
   PROJECT: VersionKit.xcodeproj
@@ -12,7 +12,10 @@ env:
 
 jobs:
   publish:
-    runs-on: macOS-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+        matrix:
+          os: [macOS-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
