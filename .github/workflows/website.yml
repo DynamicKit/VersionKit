@@ -2,6 +2,10 @@ name: website
 
 on: push
 
+env:
+  PROJECT: VersionKit.xcodeproj
+  SCHEME: VersionKit
+
 jobs:
   publish:
     runs-on: macOS-latest
@@ -59,5 +63,4 @@ jobs:
           build_dir: public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PROJECT: VersionKit.xcodeproj
-          SCHEME: VersionKit
+
