@@ -60,13 +60,14 @@ jobs:
           ls
       - name: Check jazzy documentations folder
         run: |
-          cd public && ls && cd ..
+          pwd && cd $BUILD_DIR && pwd && ls && cd ..
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
-          build_dir: $BUILD_DIR
+          build_dir: $BUILD_LOCATION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILD_LOCATION: $BUILD_DIR
 
