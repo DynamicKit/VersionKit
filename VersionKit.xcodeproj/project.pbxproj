@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DDDCB3A224AB7A12002D389F /* VersionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDCB39824AB7A12002D389F /* VersionKit.framework */; };
-		DDDCB3A724AB7A12002D389F /* VersionKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCB3A624AB7A12002D389F /* VersionKitTests.swift */; };
+		DDDCB3A724AB7A12002D389F /* AppVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCB3A624AB7A12002D389F /* AppVersionTests.swift */; };
 		DDDCB3A924AB7A12002D389F /* VersionKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DDDCB39B24AB7A12002D389F /* VersionKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDDCB3B324AB7A8B002D389F /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCB3B224AB7A8B002D389F /* AppVersion.swift */; };
 /* End PBXBuildFile section */
@@ -28,7 +28,7 @@
 		DDDCB39B24AB7A12002D389F /* VersionKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionKit.h; sourceTree = "<group>"; };
 		DDDCB39C24AB7A12002D389F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDDCB3A124AB7A12002D389F /* VersionKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VersionKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDDCB3A624AB7A12002D389F /* VersionKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionKitTests.swift; sourceTree = "<group>"; };
+		DDDCB3A624AB7A12002D389F /* AppVersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionTests.swift; sourceTree = "<group>"; };
 		DDDCB3A824AB7A12002D389F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDDCB3B224AB7A8B002D389F /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,8 +55,8 @@
 		DDDCB38E24AB7A12002D389F = {
 			isa = PBXGroup;
 			children = (
-				DDDCB39A24AB7A12002D389F /* VersionKit */,
-				DDDCB3A524AB7A12002D389F /* VersionKitTests */,
+				DDDCB39A24AB7A12002D389F /* Source */,
+				DDDCB3A524AB7A12002D389F /* Tests */,
 				DDDCB39924AB7A12002D389F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,23 +70,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DDDCB39A24AB7A12002D389F /* VersionKit */ = {
+		DDDCB39A24AB7A12002D389F /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				DDDCB39B24AB7A12002D389F /* VersionKit.h */,
 				DDDCB39C24AB7A12002D389F /* Info.plist */,
 				DDDCB3B224AB7A8B002D389F /* AppVersion.swift */,
 			);
-			path = VersionKit;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		DDDCB3A524AB7A12002D389F /* VersionKitTests */ = {
+		DDDCB3A524AB7A12002D389F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DDDCB3A624AB7A12002D389F /* VersionKitTests.swift */,
+				DDDCB3A624AB7A12002D389F /* AppVersionTests.swift */,
 				DDDCB3A824AB7A12002D389F /* Info.plist */,
 			);
-			path = VersionKitTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDDCB3A724AB7A12002D389F /* VersionKitTests.swift in Sources */,
+				DDDCB3A724AB7A12002D389F /* AppVersionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +353,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = VersionKit/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -383,7 +383,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = VersionKit/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -408,7 +408,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BPYLDK5ZR2;
-				INFOPLIST_FILE = VersionKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -430,7 +430,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BPYLDK5ZR2;
-				INFOPLIST_FILE = VersionKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

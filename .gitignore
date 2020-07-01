@@ -11,9 +11,10 @@
 *.dSYM
 *.xcuserstate
 
-# jazzy related stuff
+# documentation related stuff
 build
 public
+sourcedocs
 
 # not needed ci configurations
 
