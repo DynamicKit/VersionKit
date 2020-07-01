@@ -1,7 +1,16 @@
 name: website
 
-on: [push,pull_request,release]
-
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  release:
+    branches:
+      - master
+      
 env:
   PROJECT: VersionKit.xcodeproj
   SCHEME: VersionKit
@@ -16,7 +25,6 @@ jobs:
     strategy:
         matrix:
           os: [macOS-latest]
-          output: ${{ BUILD_DIR }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -77,7 +85,7 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
-          build_dir: ${{ matrix.output }}
+          build_dir: public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
