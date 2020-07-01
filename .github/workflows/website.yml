@@ -46,6 +46,7 @@ jobs:
           type -a jazzy
       - name: Where am i
         run: |
+          pwd
           ls
       - name: Generate docs using jazzy
         run: |
@@ -56,6 +57,10 @@ jobs:
              --output $BUILD_DIR \
              --module $SCHEME \
              --theme apple
+          ls
+      - name: Check jazzy documentations folder
+        run: |
+          cd public && ls && cd ..
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
