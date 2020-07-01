@@ -16,7 +16,7 @@ jobs:
     strategy:
         matrix:
           os: [macOS-latest]
-          output: $BUILD_DIR
+          output: ${{ BUILD_DIR }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
