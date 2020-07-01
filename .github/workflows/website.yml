@@ -5,6 +5,7 @@ on: push
 env:
   PROJECT: VersionKit.xcodeproj
   SCHEME: VersionKit
+  BUILD_DIR: public
 
 jobs:
   publish:
@@ -35,7 +36,7 @@ jobs:
       - name: Check xcodebuild comptability
         run: |
           xcodebuild clean
-          xcodebuild build -project VersionKit.xcodeproj -scheme VersionKit CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild build -project $PROJECT -scheme $SCHEME CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
       - name: Install jazzy
         run: |
           gem install jazzy
@@ -52,15 +53,15 @@ jobs:
              --clean \
              --author Mohammadreza Koohkan \
              --author_url https://mohamadreza.codes/ \
-             --output public \
-             --module VersionKit \
+             --output $BUILD_DIR \
+             --module $SCHEME \
              --theme apple
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
-          build_dir: public
+          build_dir: $BUILD_DIR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
