@@ -40,6 +40,9 @@
 		DDC9F83E24AC780800B9AD99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDC9F84124AC780800B9AD99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDC9F84324AC780800B9AD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDC9F84924AC82E800B9AD99 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		DDC9F84B24AC82F000B9AD99 /* VersionKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VersionKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		DDC9F84D24AC82F900B9AD99 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		DDDCB39824AB7A12002D389F /* VersionKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VersionKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDCB39B24AB7A12002D389F /* VersionKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionKit.h; sourceTree = "<group>"; };
 		DDDCB39C24AB7A12002D389F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,12 +100,23 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
+		DDC9F84824AC82C600B9AD99 /* Distribution */ = {
+			isa = PBXGroup;
+			children = (
+				DDC9F84D24AC82F900B9AD99 /* Package.swift */,
+				DDC9F84B24AC82F000B9AD99 /* VersionKit.podspec */,
+				DDC9F84924AC82E800B9AD99 /* LICENSE.md */,
+			);
+			name = Distribution;
+			sourceTree = "<group>";
+		};
 		DDDCB38E24AB7A12002D389F = {
 			isa = PBXGroup;
 			children = (
 				DDC9F83424AC780700B9AD99 /* Example */,
 				DDDCB39A24AB7A12002D389F /* Source */,
 				DDC9F82C24AC736400B9AD99 /* Workflows */,
+				DDC9F84824AC82C600B9AD99 /* Distribution */,
 				DDDCB3A524AB7A12002D389F /* Tests */,
 				DDDCB39924AB7A12002D389F /* Products */,
 			);
