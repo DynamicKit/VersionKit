@@ -27,7 +27,7 @@ public final class AppVersion {
     
     /// Returns version assosiated with object
     ///
-    private let version: String
+    public let version: String
     
     /// Returns components from assosiated version
     ///
