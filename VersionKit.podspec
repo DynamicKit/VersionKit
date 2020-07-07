@@ -21,7 +21,7 @@ s.watchos.deployment_target = '3.0'
 s.osx.deployment_target  = '10.12'
 s.tvos.deployment_target = '10.0'
 s.source           = { :git => 'https://github.com/DynamicKit/VersionKit.git', :tag => s.version  }
-s.swift_version    = '5.2'
+s.swift_version    = '5.1.3'
 s.source_files     = 'Source/AppVersion.swift'
 s.description      = 'App version handler'
 s.license          = { :type => 'MIT', :text => <<-LICENSE
