@@ -12,8 +12,8 @@ on:
       - master
       
 env:
-  PROJECT: VersionKit.xcodeproj
-  SCHEME: VersionKit
+  PROJECT: ${{ github.event.repository.name }}.xcodeproj
+  SCHEME: ${{ github.event.repository.name }}
   AUTHOR: Mohammadreza Koohkan
   AUTHOR_URL: https://mohamadreza.codes/
   THEME: apple
