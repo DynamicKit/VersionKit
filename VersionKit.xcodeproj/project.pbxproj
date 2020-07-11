@@ -18,6 +18,7 @@
 		DDDCB3A724AB7A12002D389F /* AppVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCB3A624AB7A12002D389F /* AppVersionTests.swift */; };
 		DDDCB3A924AB7A12002D389F /* VersionKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DDDCB39B24AB7A12002D389F /* VersionKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDDCB3B324AB7A8B002D389F /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCB3B224AB7A8B002D389F /* AppVersion.swift */; };
+		DDE5313424B9951E0064898C /* VersionKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE5313324B9951E0064898C /* VersionKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		DDDCB3A624AB7A12002D389F /* AppVersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionTests.swift; sourceTree = "<group>"; };
 		DDDCB3A824AB7A12002D389F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDDCB3B224AB7A8B002D389F /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
+		DDE5313324B9951E0064898C /* VersionKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				DDDCB39B24AB7A12002D389F /* VersionKit.h */,
 				DDDCB39C24AB7A12002D389F /* Info.plist */,
 				DDDCB3B224AB7A8B002D389F /* AppVersion.swift */,
+				DDE5313324B9951E0064898C /* VersionKit.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -233,7 +236,7 @@
 					};
 					DDDCB39724AB7A12002D389F = {
 						CreatedOnToolsVersion = 11.3;
-						LastSwiftMigration = 1130;
+						LastSwiftMigration = 1150;
 					};
 					DDDCB3A024AB7A12002D389F = {
 						CreatedOnToolsVersion = 11.3;
@@ -304,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDDCB3B324AB7A8B002D389F /* AppVersion.swift in Sources */,
+				DDE5313424B9951E0064898C /* VersionKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
