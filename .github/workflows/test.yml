@@ -87,8 +87,8 @@ jobs:
       - name: Test
         run: |
           xcodebuild test -project $PROJECT -scheme $TEST_SCHEME -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+        env:
+          destination: ${{ matrix.destination }}
       - name: Update code coverage
         run: |
           bash <(curl -s https://codecov.io/bash) -J $SCHEME
-        env:
-         destination: ${{ matrix.destination }}
