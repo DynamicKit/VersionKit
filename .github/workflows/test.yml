@@ -43,6 +43,9 @@ jobs:
         run: |
           xcode-select -version
           type -a xcode-select
+      - name: Check availabble devices
+        run: |
+          instruments -s devices
       - name: Clean xcodeproject
         run: |
           xcodebuild clean
@@ -78,6 +81,9 @@ jobs:
         run: |
           xcode-select -version
           type -a xcode-select
+      - name: Check availabble devices
+        run: |
+          instruments -s devices
       - name: Clean xcodeproject
         run: |
           xcodebuild clean
