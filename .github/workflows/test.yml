@@ -21,6 +21,7 @@ env:
 
 jobs:
   xcodebuild_build_and_test:
+    name: iOS Unit Tests
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
@@ -55,8 +56,12 @@ jobs:
          destination: ${{ matrix.destination }}
          
   upload_code_coverage:
-    name: Code coverage # codecov.io
-    runs-on: macOS-latest
+    name: Upload code coverage # codecov.io
+    runs-on: ${{ matrix.os }}
+    strategy:
+        matrix:
+          os: [macOS-latest]
+          destination: ['platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max']
     steps:
       - name: Checkout to master
         uses: actions/checkout@master
