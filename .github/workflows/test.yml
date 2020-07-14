@@ -87,24 +87,8 @@ jobs:
       - name: Test
         run: |
           xcodebuild test -project $PROJECT -scheme $TEST_SCHEME -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-        env:
-         destination: ${{ matrix.destination }}
-         
-  update_code_coverage:
-    name: Update code coverage # codecov.io
-    runs-on: ${{ matrix.os }}
-    strategy:
-        matrix:
-          os: [macOS-latest]
-          destination: ['platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max']
-    steps:
-      - name: Checkout to master
-        uses: actions/checkout@master
-      - name: Preapre code coverage report
-        run: |
-          xcodebuild -project $PROJECT -scheme $TEST_SCHEME -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO build tests
       - name: Update code coverage
-        run: |
-          bash <(curl -s https://codecov.io/bash) -J $SCHEME
+          run: |
+            bash <(curl -s https://codecov.io/bash) -J $SCHEME
         env:
          destination: ${{ matrix.destination }}
