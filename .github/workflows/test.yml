@@ -16,24 +16,10 @@ on:
 env:
   PROJECT: ${{ github.event.repository.name }}.xcodeproj
   SCHEME: ${{ github.event.repository.name }}
+  TEST_SCHEME: ${{ github.event.repository.name }}Tests
 
 
 jobs:
-  spm_build_and_test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-        matrix:
-          os: [macOS-latest]
-    steps:
-      - name: Checkout to master
-        uses: actions/checkout@v1
-      - name: Build using SPM and Swift
-        run: |
-          swift build -v
-      - name: Test using SPM and Swift
-        run: |
-          swift test -v
-          
   xcodebuild_build_and_test:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -63,7 +49,7 @@ jobs:
           xcodebuild build -project $PROJECT -scheme $SCHEME CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
       - name: Test
         run: |
-          xcodebuild test -project $PROJECT -scheme $SCHEME -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild test -project $PROJECT -scheme $TEST_SCHEME -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env:
          destination: ${{ matrix.destination }}
          
@@ -75,7 +61,7 @@ jobs:
         uses: actions/checkout@master
       - name: Preapre code coverage report
         run: |
-          xcodebuild -project $PROJECT -scheme $SCHEME -sdk iphonesimulator -destination "${destination}" build tests
+          xcodebuild -project $PROJECT -scheme $TEST_SCHEME -sdk iphonesimulator -destination "${destination}" build tests
       - name: Update code coverage
         run: |
           bash <(curl -s https://codecov.io/bash) -J $SCHEME
