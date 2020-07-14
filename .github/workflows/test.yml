@@ -36,7 +36,7 @@ jobs:
          echo SCHEME: $SCHEME
          echo TEST_SCHEME: $TEST_SCHEME
          echo MATRIX_OS: ${{ matrix.os }}
-         echo MATRIX_OS: ${{ matrix.destination }}
+         echo MATRIX_DESTINATION: ${{ matrix.destination }}
       - name: Check xcodebuild version
         run: |
           xcodebuild -version
@@ -94,9 +94,9 @@ jobs:
           xcodebuild build -project $PROJECT -scheme $SCHEME CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
       - name: Test xcodeproject
         run: |
-          xcodebuild test -project $PROJECT -scheme $TEST_SCHEME -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild test -project $PROJECT -scheme $TEST_SCHEME -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env:
-          destination: ${{ matrix.destination }}
+          DESTINATION: ${{ matrix.destination }}
       - name: Update code coverage
         run: |
           bash <(curl -s https://codecov.io/bash) -J $SCHEME
