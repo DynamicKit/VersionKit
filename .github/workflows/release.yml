@@ -89,4 +89,7 @@ jobs:
             -framework $ARCHIVE_DIR/$SIMULATOR_ARCHIVE_NAME/Products/Library/Frameworks/$SCHEME.framework \
             -framework $ARCHIVE_DIR/$DEVICE_ARCHIVE_NAME/Products/Library/Frameworks/$SCHEME.framework \
             -output $ARCHIVE_DIR/$SCHEME.xcframework
-       
+      - uses: actions/upload-artifact@v2
+        with:
+          name: XCFramework
+          path: $ARCHIVE_DIR/$SCHEME.xcframework

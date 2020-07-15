@@ -53,6 +53,7 @@
 		DDDCB3A824AB7A12002D389F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDDCB3B224AB7A8B002D389F /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		DDE19BE424BF35C90041C41C /* release.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = release.yml; sourceTree = "<group>"; };
+		DDE19BE624BF40C20041C41C /* CODEOWNERS */ = {isa = PBXFileReference; lastKnownFileType = text; path = CODEOWNERS; sourceTree = "<group>"; };
 		DDE5313324B9951E0064898C /* VersionKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +122,7 @@
 				DDC9F84D24AC82F900B9AD99 /* Package.swift */,
 				DDC9F84B24AC82F000B9AD99 /* VersionKit.podspec */,
 				DDC9F84924AC82E800B9AD99 /* LICENSE.md */,
+				DDE19BE624BF40C20041C41C /* CODEOWNERS */,
 			);
 			name = Distribution;
 			sourceTree = "<group>";
