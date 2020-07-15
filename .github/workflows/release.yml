@@ -27,7 +27,7 @@ jobs:
           os: [macOS-latest]
           simulator: ['platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max']
           device: ['generic/platform=iOS']
-          framework: ${{ github.event.repository.name }}
+          framework: [${{ github.event.repository.name }}]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
