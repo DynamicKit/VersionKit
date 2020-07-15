@@ -49,7 +49,8 @@ jobs:
           xcodebuild archive \
             -archivePath $ARCHIVE_DIR/$SIMULATOR_ARCHIVE_NAME \
             -scheme $SCHEME \
-            -destination "${destination}"
+            -destination "${destination}" \
+            CODE_SIGNING_REQUIRED=NO 
         env:
          destination: ${{ matrix.simulator }}
       - name: Archive for generic iOS devices
