@@ -19,8 +19,8 @@ env:
   DEVICE_ARCHIVE_NAME: device.xcarchive
 
 jobs:
-  xcodebuild_iPadOS_build_and_test:
-    name: iPadOS Unit Tests
+  release_xcframework:
+    name: Release Universal XCFramework
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
@@ -44,10 +44,6 @@ jobs:
       - name: Clean xcodeproject
         run: |
           xcodebuild clean
-      - name: Build xcodeproject
-        run: |
-          xcodebuild build -project $PROJECT -scheme $SCHEME CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-          
       - name: Archive for simulator
         run: |
           xcodebuild archive \
@@ -59,7 +55,7 @@ jobs:
             SKIP_INSTALL=NO
         env:
          destination: ${{ matrix.simulator }}
-      - name: Archive for simulator
+      - name: Archive for generic iOS devices
         run: |
           xcodebuild archive \
             -archivePath $ARCHIVE_DIR/$DEVICE_ARCHIVE_NAME \
