@@ -54,7 +54,7 @@ jobs:
             -archivePath $ARCHIVE_DIR/$SIMULATOR_ARCHIVE_NAME \
             -scheme $SCHEME \
             -configuration $CONFIGURATION \
-            -sdk iphoneos \
+            -sdk iphonesimulator \
             -destination "${destination}" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
@@ -66,7 +66,7 @@ jobs:
             -archivePath $ARCHIVE_DIR/$DEVICE_ARCHIVE_NAME \
             -scheme $SCHEME \
             -configuration $CONFIGURATION \
-            -sdk iphonesimulator \
+            -sdk iphoneos \
             -destination "${destination}" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
@@ -102,5 +102,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: XCFramework
-          path: |
-            $ARCHIVE_DIR/
+          path: Archive/
