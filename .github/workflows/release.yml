@@ -14,6 +14,7 @@ on:
 env:
   PROJECT: ${{ github.event.repository.name }}.xcodeproj
   SCHEME: ${{ github.event.repository.name }}
+  CONFIGURATION: Release
   ARCHIVE_DIR: Archive
   SIMULATOR_ARCHIVE_NAME: simulator.xcarchive
   DEVICE_ARCHIVE_NAME: device.xcarchive
@@ -44,11 +45,16 @@ jobs:
       - name: Clean xcodeproject
         run: |
           xcodebuild clean
+      - name: Files at project directory
+        run: |
+          ls
       - name: Archive for simulator
         run: |
           xcodebuild archive \
             -archivePath $ARCHIVE_DIR/$SIMULATOR_ARCHIVE_NAME \
             -scheme $SCHEME \
+            -configuration $CONFIGURATION \
+            -sdk iphoneos \
             -destination "${destination}" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
@@ -59,6 +65,8 @@ jobs:
           xcodebuild archive \
             -archivePath $ARCHIVE_DIR/$DEVICE_ARCHIVE_NAME \
             -scheme $SCHEME \
+            -configuration $CONFIGURATION \
+            -sdk iphonesimulator \
             -destination "${destination}" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
