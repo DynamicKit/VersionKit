@@ -19,12 +19,14 @@ let package = Package(
     targets: [
         .target(
             name: "VersionKit",
-            path: "Source"
+            path: "Source",
+            exclude: ["VersionKit.m"]
         ),
         .testTarget(
             name: "VersionKitTests",
             dependencies: ["VersionKit"],
-            path: "Tests"
+            path: "Tests",
+            exclude: ["VersionKit.m"]
         )
     ],
     swiftLanguageVersions: [
