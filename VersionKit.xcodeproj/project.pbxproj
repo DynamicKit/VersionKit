@@ -17,6 +17,7 @@
 		DDDCB3A724AB7A12002D389F /* AppVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCB3A624AB7A12002D389F /* AppVersionTests.swift */; };
 		DDDCB3A924AB7A12002D389F /* VersionKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DDDCB39B24AB7A12002D389F /* VersionKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDDCB3B324AB7A8B002D389F /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCB3B224AB7A8B002D389F /* AppVersion.swift */; };
+		DDE19BE524BF35C90041C41C /* release.yml in Resources */ = {isa = PBXBuildFile; fileRef = DDE19BE424BF35C90041C41C /* release.yml */; };
 		DDE5313424B9951E0064898C /* VersionKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE5313324B9951E0064898C /* VersionKit.m */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		DDDCB3A624AB7A12002D389F /* AppVersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionTests.swift; sourceTree = "<group>"; };
 		DDDCB3A824AB7A12002D389F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDDCB3B224AB7A8B002D389F /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
+		DDE19BE424BF35C90041C41C /* release.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = release.yml; sourceTree = "<group>"; };
 		DDE5313324B9951E0064898C /* VersionKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 			children = (
 				DDA8DFC624BD97350078468C /* test.yml */,
 				DDA8DFC724BD97350078468C /* website.yml */,
+				DDE19BE424BF35C90041C41C /* release.yml */,
 			);
 			name = workflows;
 			path = .github/workflows;
@@ -288,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE19BE524BF35C90041C41C /* release.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +523,7 @@
 		DDDCB3AD24AB7A12002D389F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -540,7 +545,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,6 +555,7 @@
 		DDDCB3AE24AB7A12002D389F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -571,7 +577,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

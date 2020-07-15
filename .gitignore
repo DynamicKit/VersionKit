@@ -19,3 +19,8 @@ sourcedocs
 # not needed ci configurations
 
 .gitlab-ci.yml
+
+
+#Build outputs
+Build
+Archive

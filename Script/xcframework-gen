@@ -1,0 +1,21 @@
+xcodebuild archive \
+ -archivePath Archive/simulator.xcarchive \
+ -scheme VersionKit \
+ -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max' \
+ CODE_SIGN_IDENTITY="" \
+ CODE_SIGNING_REQUIRED=NO \
+ SKIP_INSTALL=NO
+
+xcodebuild archive \
+ -archivePath Archive/device.xcarchive \
+ -scheme VersionKit \
+ -destination generic/platform=iOS \
+ CODE_SIGN_IDENTITY="" \
+ CODE_SIGNING_REQUIRED=NO \
+ ONLY_ACTIVE_ARCH=NO \
+ SKIP_INSTALL=NO
+ 
+xcodebuild -create-xcframework \
+-framework Archive/simulator.xcarchive/Products/Library/Frameworks/VersionKit.framework \
+-framework Archive/device.xcarchive/Products/Library/Frameworks/VersionKit.framework \
+-output Archive/VersionKit.xcframework

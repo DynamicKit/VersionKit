@@ -1,0 +1,77 @@
+name: Release
+
+on:
+  pull_request:
+    branches:
+      - master
+  release:
+    branches:
+      - master
+      
+env:
+  PROJECT: ${{ github.event.repository.name }}.xcodeproj
+  SCHEME: ${{ github.event.repository.name }}
+  ARCHIVE_DIR: Archive
+  SIMULATOR_ARCHIVE_NAME: simulator.xcarchive
+  DEVICE_ARCHIVE_NAME: device.xcarchive
+
+jobs:
+  xcodebuild_iPadOS_build_and_test:
+    name: iPadOS Unit Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+        matrix:
+          os: [macOS-latest]
+          simulator: ['platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max']
+          device: ['generic/platform=iOS']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check xcodebuild version
+        run: |
+          xcodebuild -version
+          type -a xcodebuild
+      - name: Check xcode-select version
+        run: |
+          xcode-select -version
+          type -a xcode-select
+      - name: Check availabble devices
+        run: |
+          instruments -s devices
+      - name: Clean xcodeproject
+        run: |
+          xcodebuild clean
+      - name: Build xcodeproject
+        run: |
+          xcodebuild build -project $PROJECT -scheme $SCHEME CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          
+      - name: Archive for simulator
+        run: |
+          xcodebuild archive \
+            -archivePath $ARCHIVE_DIR/$SIMULATOR_ARCHIVE_NAME \
+            -scheme $SCHEME \
+            -destination "${destination}" \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            SKIP_INSTALL=NO
+        env:
+         destination: ${{ matrix.simulator }}
+      - name: Archive for simulator
+        run: |
+          xcodebuild archive \
+            -archivePath $ARCHIVE_DIR/$DEVICE_ARCHIVE_NAME \
+            -scheme $SCHEME \
+            -destination "${destination}" \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            ONLY_ACTIVE_ARCH=NO \
+            SKIP_INSTALL=NO
+        env:
+         destination: ${{ matrix.device }}
+      - name: Create universal XCFramework
+        run: |
+          xcodebuild -create-xcframework \
+            -framework $ARCHIVE_DIR/$SIMULATOR_ARCHIVE_NAME/Products/Library/Frameworks/$SCHEME.framework \
+            -framework $ARCHIVE_DIR/$DEVICE_ARCHIVE_NAME/Products/Library/Frameworks/$SCHEME.framework \
+            -output $ARCHIVE_DIR/$SCHEME.xcframework
+       
