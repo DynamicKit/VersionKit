@@ -92,4 +92,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: XCFramework
-          path: Archive/${{ github.event.repository.name }}
+          path: Archive/${{ github.event.repository.name }}.xcframework
