@@ -50,7 +50,8 @@ jobs:
             -archivePath $ARCHIVE_DIR/$SIMULATOR_ARCHIVE_NAME \
             -scheme $SCHEME \
             -destination "${destination}" \
-            CODE_SIGNING_REQUIRED=NO 
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
         env:
          destination: ${{ matrix.simulator }}
       - name: Archive for generic iOS devices
@@ -65,6 +66,23 @@ jobs:
             SKIP_INSTALL=NO
         env:
          destination: ${{ matrix.device }}
+      - name: Files at archive directory
+        run: |
+          cd $ARCHIVE_DIR
+          ls
+          cd ..
+      - name: Modules in simulator archive
+        run: |
+          cd $ARCHIVE_DIR/$SIMULATOR_ARCHIVE_NAME/Products/Library/
+          cd Frameworks/$SCHEME.framework/Modules/$SCHEME.swiftmodule/
+          ls
+          cd ../../../../../../../..
+      - name: Modules in device archive
+        run: |
+          cd $ARCHIVE_DIR/$DEVICE_ARCHIVE_NAME/Products/Library/
+          cd Frameworks/$SCHEME.framework/Modules/$SCHEME.swiftmodule/
+          ls
+          cd ../../../../../../../..
       - name: Create universal XCFramework
         run: |
           xcodebuild -create-xcframework \
