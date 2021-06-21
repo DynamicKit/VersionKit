@@ -8,81 +8,89 @@
 
 import Foundation
 
-/// # App version
-/// Stores an app version and provides methods
+/// # App Version
+/// Stores an app version and provides availablity services
 ///
-public final class AppVersion {
-    
-    /// Returns current application version from info.plist
+public struct AppVersion {
+
+    /// Returns standard version components type
     ///
-    public class var applicationVersion: String {
-        return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-    }
-    
-    /// Returns current application build number from info.plist
-    ///
-    public class var applicationBuildNumber: String {
-        return Bundle.main.infoDictionary?["CFBundleVersion"] as! String
-    }
+    public typealias VersionComponent = (major: Int, minor: Int, patch: Int)
     
     /// Returns version assosiated with object
     ///
     public let version: String
     
-    /// Returns components from assosiated version
+    /// Returns major version
     ///
-    public lazy var versionComponents: (major: Int, minor: Int, patch: Int) = {
-        return AppVersion.components(version: self.version)!
-    }()
+    public let major: Int
     
-    /// Creates an instance of `AppVersion` with given version
+    /// Returns minor version
+    ///
+    public let minor: Int
+    
+    /// Returns patch version
+    ///
+    public let patch: Int
+    
+    /// Returns current application version checker
+    ///
+    public static let current: AppVersion = .init(version: applicationVersion)!
+    
+    /// Returns current application version from info.plist
+    ///
+    private static var applicationVersion: String {
+        return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+    }
+    
+    /// Returns current application build number from info.plist
+    ///
+    private static var applicationBuildNumber: String {
+        return Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+    }
+    
+    /// Returns major, minor and patch from given version
+    ///
+    public let components: VersionComponent
+    
+//        guard VersionChecker.isCorrect(version) else { return nil }
+//        let versionComponents = version.components(separatedBy: ".").map { Int($0)! }
+//        let major = versionComponents[0]
+//        let minor = versionComponents[1]
+//        let patch = versionComponents[2]
+//        return (major,minor,patch)
+//    }
+    
+    /// Creates an instance of `VersionChecker` with given version
     ///
     /// This initializer returns nil if given version is not in correct format
     /// Supported formats: 1.0.0 or 10.00.00 or ... (Int.Int.Int)
     ///
     public init?(version: String) {
-        guard AppVersion.isCorrect(version) else { return nil }
+        let components = version.components(separatedBy: ".").compactMap(Int.init)
+        guard AppVersion.isCorrect(version), components.count == 3 else { return nil }
         self.version = version
-    }
-    
-    /// Creates an instance of `AppVersion` with current version from info.plist
-    ///
-    /// This initializer returns nil if given version is not in correct format
-    /// Supported formats: 1.0.0 or 10.00.00 or ... (Int.Int.Int)
-    ///
-    public convenience init?() {
-        let version = AppVersion.applicationVersion
-        guard AppVersion.isCorrect(version) else { return nil }
-        self.init(version: version)
-    }
-    
-    /// Returns major, minor and patch from given version
-    ///
-    public class func components(version: String) -> (major: Int, minor: Int, patch: Int)? {
-        guard AppVersion.isCorrect(version) else { return nil }
-        let versionComponents = version.components(separatedBy: ".").map { Int($0)! }
-        let major = versionComponents[0]
-        let minor = versionComponents[1]
-        let patch = versionComponents[2]
-        return (major,minor,patch)
+        major = components[0]
+        minor = components[1]
+        patch = components[2]
+        self.components = (major,minor,patch)
     }
     
     /// Returns result of evaluating lower bound of current version and given version
     ///
     public func isLower(thanVersion newVersion: String) -> Bool {
-        guard AppVersion.isCorrect(newVersion) else { return false }
-        let new = AppVersion.components(version: newVersion)!
-        if new.major < self.versionComponents.major {
+        guard let newVersion = AppVersion(version: newVersion) else { return false }
+        if newVersion.major < major {
             return false
-        }else if new.major > self.versionComponents.major{
+        }else if newVersion.major > major {
             return true
-        }else if new.minor < self.versionComponents.minor {
+        }else if newVersion.minor < minor {
             return false
-        }else if new.minor > self.versionComponents.minor {
+        }else if newVersion.minor > minor {
             return true
-        }else if new.patch < self.versionComponents.patch {
+        }else if newVersion.patch < patch {
             return false
-        }else if new.patch > self.versionComponents.patch {
+        }else if newVersion.patch > patch {
             return true
         }
         return false
@@ -91,19 +99,18 @@ public final class AppVersion {
     /// Returns result of evaluating higher bound of current version and given version
     ///
     public func isHigher(thanVersion newVersion: String) -> Bool {
-        guard AppVersion.isCorrect(newVersion) else { return false }
-        let new = AppVersion.components(version: newVersion)!
-        if new.major < self.versionComponents.major {
+        guard let newVersion = AppVersion(version: newVersion) else { return false }
+        if newVersion.major < major {
             return true
-        }else if new.major > self.versionComponents.major{
+        }else if newVersion.major > major {
             return false
-        }else if new.minor < self.versionComponents.minor {
+        }else if newVersion.minor < minor {
             return true
-        }else if new.minor > self.versionComponents.minor {
+        }else if newVersion.minor > minor {
             return false
-        }else if new.patch < self.versionComponents.patch {
+        }else if newVersion.patch < patch {
             return true
-        }else if new.patch > self.versionComponents.patch {
+        }else if newVersion.patch > patch {
             return false
         }
         return false
@@ -112,8 +119,10 @@ public final class AppVersion {
     /// Returns where given version is equal to current version
     ///
     public func isEqual(to equalVersion: String) -> Bool {
-        guard AppVersion.isCorrect(equalVersion) else { return false }
-        return self.versionComponents == AppVersion.components(version: equalVersion)!
+        guard let equalVersion = AppVersion(version: equalVersion) else { return false }
+        return equalVersion.major == major
+            && equalVersion.minor == minor
+            && equalVersion.patch == patch
     }
     
     /// Returns validation result of given version
@@ -122,7 +131,7 @@ public final class AppVersion {
     ///
     ///     var example = "1.0.0"
     ///
-    private class func isCorrect(_ version: String) -> Bool {
+    private static func isCorrect(_ version: String) -> Bool {
         return isThreePart(version) && isIntegarParts(version)
     }
     
@@ -130,19 +139,21 @@ public final class AppVersion {
     ///
     /// major.minor.patch is the correct format
     ///
-    private class func isThreePart(_ version: String) -> Bool {
-        let condition = version.components(separatedBy: ".").count == 3
-        return condition
+    private static func isThreePart(_ version: String) -> Bool {
+       return version
+            .components(separatedBy: ".")
+            .count == 3
     }
     
     /// Check whether given version is integar literal
     ///
     /// 1.0.0 is the correct format
     ///
-    private class func isIntegarParts(_ version: String) -> Bool {
-        let condition = version.components(separatedBy: ".").filter { Int($0) == nil }.isEmpty
-        return condition
+    private static func isIntegarParts(_ version: String) -> Bool {
+        return version
+            .components(separatedBy: ".")
+            .filter { Int($0) == nil }
+            .isEmpty
     }
-    
 }
 
